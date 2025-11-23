@@ -72,10 +72,11 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "BAT: {capacity}% {icon} {time}",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "Bat {capacity}%",
+        "format": "{icon}  {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "format-charging": "  {capacity}%",
         "format-time": "{H}:{M}",
+        "tooltip-format": "{time}",
         "format-icons": [
             "",
             "",
@@ -98,7 +99,8 @@
     },
     "temperature": {
         // "thermal-zone": 1,
-        // to get hwmon path, run this: for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+        // to get hwmon path, run the below command:
+        // for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
         "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
         // "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C ",
@@ -114,7 +116,7 @@
     },
     "mpris": {
         "format": "{player_icon} {artist} – {title}",
-        "format-paused": "{status_icon}  <i>{artist} – {title}</i>",
+        "format-paused": "{status_icon}  {artist} – {title}",
         "player-icons": {
             "default": "▶"
         },
