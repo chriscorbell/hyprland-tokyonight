@@ -98,9 +98,9 @@
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=$blue
 
   # Context format when root: user@host. The first part white, the rest grey.
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="%F{$white}%n%f%F{$grey}@%m%f"
+  typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="%F{$magenta}%n%f%F{$white}@%F{2}%m%f"
   # Context format when not root: user@host. In green.
-  typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE="%F{2}%n@%m%f"
+  typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE="%F{$cyan}%n%F{$white}@%F{2}%m%f"
   # Show context always (username@hostname).
   # typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_CONTENT_EXPANSION=
 
