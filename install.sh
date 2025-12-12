@@ -23,7 +23,7 @@ echo -e "${NOCOLOR}"
 
 # Ask about base TUI packages
 echo
-read -p "$(echo -e '\n\e[32mDo you want to install base TUI packages?\n\n\e[33m(sudo pacman -S --needed --noconfirm jq socat git base-devel)\n\n\e[35mEnter your choice (Y/n):\e[0m ') " install_base
+read -p "$(echo -e '\n\e[32mDo you want to install base TUI packages?\n\n\e[33m(sudo pacman -S --needed --noconfirm jq socat git base-devel)\n\n\e[35mEnter your choice (Y/n):\e[0m ') " install_base < /dev/tty
 install_base=${install_base:-Y}
 
 if [[ $install_base =~ ^[Yy]$ ]]; then
@@ -36,7 +36,7 @@ fi
 
 # Ask about kernel headers
 echo
-read -p "$(echo -e '\n\e[32mDo you want to install kernel headers?\n\n\e[33m(Automatically detects appropriate headers package for installed kernels: linux, linux-zen, linux-lts, linux-hardened)\n\n\e[31mNOTE: Kernel headers are necessary for nvidia-dkms!\n\n\e[35mEnter your choice (Y/n):\e[0m ') " install_headers
+read -p "$(echo -e '\n\e[32mDo you want to install kernel headers?\n\n\e[33m(Automatically detects appropriate headers package for installed kernels: linux, linux-zen, linux-lts, linux-hardened)\n\n\e[31mNOTE: Kernel headers are necessary for nvidia-dkms!\n\n\e[35mEnter your choice (Y/n):\e[0m ') " install_headers < /dev/tty
 install_headers=${install_headers:-Y}
 
 if [[ $install_headers =~ ^[Yy]$ ]]; then
@@ -64,7 +64,7 @@ echo
 echo -e "\n\e[32mWhich AUR helper do you want to install?\e[0m\n"
 echo -e "1) \e[36myay\e[0m"
 echo -e "2) \e[36mparu\e[0m"
-read -p "$(echo -e '\n\e[35mEnter your choice (1-2):\e[0m ') " aur_choice
+read -p "$(echo -e '\n\e[35mEnter your choice (1-2):\e[0m ') " aur_choice < /dev/tty
 
 case $aur_choice in
     1)
@@ -114,7 +114,7 @@ echo -e "1) \e[36mNVIDIA\e[0m\n(Choose between open-source and proprietary drive
 echo -e "2) \e[36mAMD\n\e[33m(${AUR_HELPER:-pacman} -S --needed --noconfirm mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader)\n\e[0m"
 echo -e "3) \e[36mIntel\n\e[33m(${AUR_HELPER:-pacman} -S --needed --noconfirm mesa lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader)\n\e[0m"
 echo -e "4) \e[36mSkip GPU driver installation\e[0m\n"
-read -p "$(echo -e '\e[35mEnter your choice (1-4):\e[0m ') " gpu_choice
+read -p "$(echo -e '\e[35mEnter your choice (1-4):\e[0m ') " gpu_choice < /dev/tty
 
 case $gpu_choice in
     1)
@@ -122,7 +122,7 @@ case $gpu_choice in
         echo -e "\n\e[32mWhich NVIDIA GPU series do you have?\e[0m\n"
         echo -e "1) \e[36mGeForce 16 series and newer\n\e[33m(${AUR_HELPER:-pacman} -S --needed --noconfirm nvidia-open-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader)\n\e[0m"
         echo -e "2) \e[36mGeForce 10 series and older\n\e[33m(${AUR_HELPER:-pacman} -S --needed --noconfirm nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader)\n\e[0m"
-        read -p "$(echo -e '\e[35mEnter your choice (1 or 2):\e[0m ') " nvidia_choice
+        read -p "$(echo -e '\e[35mEnter your choice (1 or 2):\e[0m ') " nvidia_choice < /dev/tty
         
         # Check if multilib is enabled (needed for 32-bit libs)
         if ! grep -q "^\[multilib\]" /etc/pacman.conf; then
@@ -168,7 +168,7 @@ esac
 
 # Ask about desktop packages
 echo
-read -p "$(echo -e '\e[32mDo you want to install hyprland along with additional desktop packages?\n\n\e[33m('${AUR_HELPER:-pacman}' -S --needed --noconfirm bluez bluez-libs bluez-utils pipewire pipewire-pulse wireplumber cava swayimg celluloid dunst firefox hyprland hyprlock hyprpicker polkit-gnome gnome-keyring swww nautilus wofi grim slurp wl-clipboard wl-clip-persist xdg-desktop-portal xdg-desktop-portal-hyprland xorg-xwayland ly inter-font kitty nwg-look brightnessctl obs-studio openssh sassc ttf-jetbrains-mono-nerd neovim visual-studio-code-bin playerctl waybar wine-staging wine-mono winetricks flatpak steam)\n\n\e[35mEnter your choice (Y/n):\e[0m ') " install_desktop
+read -p "$(echo -e '\e[32mDo you want to install hyprland along with additional desktop packages?\n\n\e[33m('${AUR_HELPER:-pacman}' -S --needed --noconfirm bluez bluez-libs bluez-utils pipewire pipewire-pulse wireplumber cava swayimg celluloid dunst firefox hyprland hyprlock hyprpicker polkit-gnome gnome-keyring swww nautilus wofi grim slurp wl-clipboard wl-clip-persist xdg-desktop-portal xdg-desktop-portal-hyprland xorg-xwayland ly inter-font kitty nwg-look brightnessctl obs-studio openssh sassc ttf-jetbrains-mono-nerd neovim visual-studio-code-bin playerctl waybar wine-staging wine-mono winetricks flatpak steam)\n\n\e[35mEnter your choice (Y/n):\e[0m ') " install_desktop < /dev/tty
 install_desktop=${install_desktop:-Y}
 
 if [[ $install_desktop =~ ^[Yy]$ ]]; then
@@ -197,7 +197,7 @@ echo -e "\n\e[32mIs this machine a desktop, or is it a laptop?\e[0m"
 echo -e "\n\e[33mLaptop option installs TLP for power management\e[0m\n"
 echo -e "1) \e[36mDesktop\e[0m"
 echo -e "2) \e[36mLaptop\e[0m"
-read -p "$(echo -e '\n\e[35mEnter your choice (1 or 2):\e[0m ') " device_type
+read -p "$(echo -e '\n\e[35mEnter your choice (1 or 2):\e[0m ') " device_type < /dev/tty
 
 case $device_type in
     2)
